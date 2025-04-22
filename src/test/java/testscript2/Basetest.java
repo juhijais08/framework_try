@@ -1,9 +1,13 @@
 package testscript2;
 
-import org.openqa.selenium.By;
+
+import java.util.Scanner;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
+
+
 
 import page_objects.LoginPageObject;
 
@@ -17,7 +21,13 @@ public class Basetest {
 
 		LoginPageObject lpo= new LoginPageObject(driver);
 		lpo.launchapp();
-		lpo.dologin();
+		Scanner sc= new Scanner(System.in);
+
+	    System.out.println("Enter the email:");
+		System.out.println("Enter the pass:");
+		String s= sc.nextLine();
+		String a=sc.nextLine();
+		lpo.dologin(s,a);
 		
 	}
 		
