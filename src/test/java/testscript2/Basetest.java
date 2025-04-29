@@ -1,37 +1,40 @@
 package testscript2;
 
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 
 
 import page_objects.LoginPageObject;
 
-public class Basetest {
-         @Test
+public class Basetest extends ReusableTestComponents {
+         @Test (dataProvider = "excelData") 
 
-	public void tc01(){
-	
-		WebDriver driver = new ChromeDriver();
+	public void tc01 (String unName, String unPass)
 		
-
-		LoginPageObject lpo= new LoginPageObject(driver);
-		lpo.launchapp();
-		Scanner sc= new Scanner(System.in);
-
-	    System.out.println("Enter the email:");
-		System.out.println("Enter the pass:");
-		String s= sc.nextLine();
-		String a=sc.nextLine();
-		lpo.dologin(s,a);
-		
-	}
-		
-
+	{
+	  System.out.println(unName+ " "+ unPass);
+	  
+	  }
+         @DataProvider(name="excelData")
+         public Object[][] getExcelData() throws IOException 
+         {
+         String filepath="C:\\Users\\Juhi\\OneDrive\\Automation\\excel csv\\ExcelCSV.xlsx";
+         String sheetname= "MySheet";
+         
+         return Excel_Util.readExcelData(filepath,sheetname );
+         }
+    
+         
+         
+         
+         
 	}
 
 
